@@ -3,79 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>My Personal Portfolio</title>
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Floating Header with Navigation -->
     <header class="header">
         <a href="#" class="logo">My Portfolio</a>
         <nav class="navbar">
-            <a href="#about" class="active">About Me</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <!-- Navigation links that will scroll to each section -->
+            <a href="#about" class="nav-link active">About</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </header>
 
+    <!-- Main Content Area -->
     <main>
-        <section id="about" class="section about-section">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <h1>Hi, I'm Jin Long</h1>
-                        <p>I am a passionate programmer, with a focus on [Your Speciality]. I love building beautiful and functional things on the web. This is a space where I showcase my work and share a little bit about my journey.</p>
-                        <a href="#projects" class="btn">View My Projects</a>
-                    </div>
-                    <div class="about-image">
-                        <img src="https://via.placeholder.com/400" alt="[Your Name] Profile Picture">
-                    </div>
-                </div>
+        <!-- About Section - This is the first full-screen section -->
+        <section id="about" class="section is-visible">
+            <div class="content">
+                <h1>Hello, I'm <span class="highlight">Jin Long</span></h1>
+                <p>I'm a passionate programmer specializing in building clean and modern web experiences. This is my digital space to share my work and a bit about my journey.</p>
             </div>
         </section>
 
-        <section id="projects" class="section projects-section">
-            <div class="container">
+        <!-- Projects Section - The second full-screen section -->
+        <section id="projects" class="section">
+            <div class="content">
                 <h2>My Projects</h2>
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <a href="#" class="project-card">
                         <h3>Project One</h3>
-                        <p>A brief description of your project. Mention the technologies you used and the problem it solves. This card can be linked to the live demo or repository.</p>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
-                    <div class="project-card">
+                        <p>A brief description of your project and the technologies used, like HTML, CSS, and JavaScript.</p>
+                    </a>
+                    <a href="#" class="project-card">
                         <h3>Project Two</h3>
-                        <p>A brief description of your project. Mention the technologies you used and the problem it solves. This card can be linked to the live demo or repository.</p>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
-                    <div class="project-card">
+                        <p>Another project description, highlighting your skills in areas like responsive design or API integration.</p>
+                    </a>
+                    <a href="#" class="project-card">
                         <h3>Project Three</h3>
-                        <p>A brief description of your project. Mention the technologies you used and the problem it solves. This card can be linked to the live demo or repository.</p>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
+                        <p>A final project to showcase your range of work, from front-end design to complex logic.</p>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section contact-section">
-            <div class="container">
+        <!-- Contact Section - The third full-screen section -->
+        <section id="contact" class="section">
+            <div class="content">
                 <h2>Get in Touch</h2>
-                <p>Feel free to reach out to me for collaboration or just to say hello!</p>
+                <p>I'm always looking for new opportunities and collaborations. Feel free to reach out to me below!</p>
                 <form class="contact-form">
                     <input type="text" placeholder="Your Name" required>
                     <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="btn">Send Message</button>
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send</button>
                 </form>
-                <div class="social-links">
-                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-                    <a href="https://github.com" target="_blank">GitHub</a>
-                    <a href="https://twitter.com" target="_blank">Twitter</a>
-                </div>
             </div>
         </section>
     </main>
 
+    <!-- Link to the external JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>

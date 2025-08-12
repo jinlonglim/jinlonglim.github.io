@@ -1,46 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Select all the full-screen sections
     const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('.navbar a');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    // Function to add 'active' class to sections on scroll
-    function checkSectionInView() {
-        let current = '';
+    // Create an observer to check when a section is in view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // If the section is intersecting the viewport, add the 'is-visible' class
+                entry.target.classList.add('is-visible');
+            } else {
+                // Otherwise, remove the class to fade it out
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.5 // Trigger when 50% of the section is visible
+    });
+
+    // Observe each section
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // Update the active navigation link based on the current section
+    window.addEventListener('scroll', () => {
+        let currentSection = '';
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            if (scrollY >= sectionTop - 150) {
-                current = section.getAttribute('id');
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= sectionTop - sectionHeight / 2) {
+                currentSection = section.getAttribute('id');
             }
         });
 
-        // Add 'active' class to the corresponding nav link
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
+            if (link.getAttribute('href').includes(currentSection)) {
                 link.classList.add('active');
             }
         });
-    }
-
-    // Function to handle the animated appearance of sections
-    function handleScrollAnimation() {
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const screenHeight = window.innerHeight;
-
-            // If the section is in the viewport, add the 'active' class
-            if (sectionTop < screenHeight - 150) {
-                section.classList.add('active');
-            }
-        });
-    }
-
-    // Event listeners
-    window.addEventListener('scroll', () => {
-        checkSectionInView();
-        handleScrollAnimation();
     });
 
-    // Run on page load
-    checkSectionInView();
-    handleScrollAnimation();
+    // Initially highlight the 'About' link on load
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === '#about') {
+            link.classList.add('active');
+        }
+    });
 });
