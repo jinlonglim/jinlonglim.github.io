@@ -4,27 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Personal Portfolio</title>
-    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="style.css">
-    <!-- Link to the Inter font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Floating Header with Navigation -->
     <header class="header">
         <a href="#" class="logo">My Portfolio</a>
         <nav class="navbar">
-            <!-- Navigation links that will scroll to each section -->
             <a href="#about" class="nav-link active">About</a>
             <a href="#projects" class="nav-link">Projects</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </header>
 
-    <!-- Main Content Area -->
     <main>
-        <!-- About Section - This is the first full-screen section -->
         <section id="about" class="section is-visible">
             <div class="content">
                 <h1>Hello, I'm <span class="highlight">Jin Long</span></h1>
@@ -32,7 +27,6 @@
             </div>
         </section>
 
-        <!-- Projects Section - The second full-screen section -->
         <section id="projects" class="section">
             <div class="content">
                 <h2>My Projects</h2>
@@ -53,11 +47,15 @@
             </div>
         </section>
 
-        <!-- Contact Section - The third full-screen section -->
         <section id="contact" class="section">
             <div class="content">
                 <h2>Get in Touch</h2>
                 <p>I'm always looking for new opportunities and collaborations. Feel free to reach out to me below!</p>
+                <div class="social-icons">
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/yourprofile" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/yourprofile" target="_blank" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+                </div>
                 <form class="contact-form">
                     <input type="text" placeholder="Your Name" required>
                     <input type="email" placeholder="Your Email" required>
@@ -68,7 +66,6 @@
         </section>
     </main>
 
-    <!-- Link to the external JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>

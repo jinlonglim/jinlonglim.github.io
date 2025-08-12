@@ -1,52 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Select all the full-screen sections
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
+    const header = document.querySelector('.header');
 
-    // Create an observer to check when a section is in view
-    const observer = new IntersectionObserver((entries) => {
+    // Array of gradients for each section
+    const sectionGradients = [
+        'linear-gradient(to right, #4a90e2, #50c9c3)', // About
+        'linear-gradient(to right, #7b4397, #dc2430)', // Projects
+        'linear-gradient(to right, #0f0c29, #3a0a6d, #24243e)' // Contact
+    ];
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Trigger when 50% of the section is visible
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // If the section is intersecting the viewport, add the 'is-visible' class
+                // Add `is-visible` class to fade in the section
                 entry.target.classList.add('is-visible');
+
+                // Update the active navigation link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${entry.target.id}`) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Change the body background color to the corresponding gradient
+                const sectionId = entry.target.id;
+                let gradientIndex;
+                if (sectionId === 'about') {
+                    gradientIndex = 0;
+                } else if (sectionId === 'projects') {
+                    gradientIndex = 1;
+                } else if (sectionId === 'contact') {
+                    gradientIndex = 2;
+                }
+                
+                if (gradientIndex !== undefined) {
+                    // Update the background-image directly on the body
+                    document.body.style.backgroundImage = sectionGradients[gradientIndex];
+                }
             } else {
-                // Otherwise, remove the class to fade it out
+                // Remove `is-visible` class when the section is not visible
                 entry.target.classList.remove('is-visible');
             }
         });
-    }, {
-        threshold: 0.5 // Trigger when 50% of the section is visible
-    });
+    }, observerOptions);
 
-    // Observe each section
     sections.forEach(section => {
-        observer.observe(section);
+        sectionObserver.observe(section);
     });
 
-    // Update the active navigation link based on the current section
-    window.addEventListener('scroll', () => {
-        let currentSection = '';
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollY >= sectionTop - sectionHeight / 2) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(currentSection)) {
-                link.classList.add('active');
-            }
-        });
-    });
-
-    // Initially highlight the 'About' link on load
+    // Handle smooth scrolling for navigation links
     navLinks.forEach(link => {
-        if (link.getAttribute('href') === '#about') {
-            link.classList.add('active');
-        }
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = e.target.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                // Scroll smoothly to the target section
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
 });
